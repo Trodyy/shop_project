@@ -1,0 +1,56 @@
+<div class="social">
+    <ul>
+       <li><a href=""><i class="fa fa-instagram"></i></a></li>
+       <li><a href=""><i class="fa fa-send"></i></a></li>
+       <li><a href=""><i class="fa fa-facebook"></i></a></li>
+       <li><a href=""><i class="fa fa-twitter"></i></a></li>
+    </ul>
+ </div>
+ <!---------------------------------->      
+ <div class="top2">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-6">
+             <div class="login">
+                <a href="{% url 'index_page' %}" class="mybtn"><i class="fa fa-home"></i>خانه</a>
+                {% if request.user.is_authenticated != True %}
+                <a href="{% url 'register_page' %}" class="mybtn"><i class="fa fa-user-plus"></i>ثبت نام</a>
+                <a href="{% url 'login_page' %}" class="mybtn"><i class="fa fa-sign-in"></i>ورورد</a>
+                {% else %}
+                <a href="#" class="mybtn"><i class="fa fa-cart-arrow-down"></i>سبد</a>  
+                {% endif %}				
+                {% if request.user.is_superuser %}
+                <a href="admin/" class="mybtn"><i class="fa fa-user-o"></i>پنل ادمین</a>
+                {% endif %}
+                <a href="{% url 'product_list' %}" class="mybtn"><i class="fa fa-product-hunt"></i>محصولات</a>
+                <a href="{% url 'logout_page' %}" class="mybtn"><i class="fa fa-sign-out"></i>خروج</a>
+             </div>
+          </div>
+          
+            <h1>{{site_setting.title}}</h1>
+            <img src="{{site_setting.logo.url}}" style="width: 186px; height: 79px; display: flex; justify-content: left;">
+          
+       </div>
+    </div>
+ </div>
+ </div><!--top2-->      
+ <!---------------------------------->        
+ <div class="main-menu">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-12">
+             <ul>
+                
+                {% for category in categories %}
+                <li>
+                   <a href="{% url 'selected_category' cat=category.url_title  %}">{{category.title}}</a>
+                   <ul>
+                      <li><a href="#">گوشی موبایل</a></li>
+                   </ul>
+                </li>
+                {% endfor %}
+             </ul>
+          </div>
+       </div>
+    </div>
+ </div>

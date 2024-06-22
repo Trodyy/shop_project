@@ -1,0 +1,36 @@
+
+<div class="footer">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-5">
+             <div class="footer-description">
+                <ul>
+                   {% for footer_link in footer_links %}
+                   <li><a href="{{footer_link.link}}">{{footer_link.title}}</a></li>
+                   {% endfor %}
+                </ul>
+             </div>
+          </div>
+          <div class="col-md-3">
+             <div class="news-form">
+                <a href="#"><h5>در خبرنامه عضو شوید</h5></a>
+                <p>{{site_setting.copy_right}}</p>
+                <p>تلفن : {{site_setting.call_number}}</p>
+                <p>فکس : {{site_setting.fax}}</p>
+                <p>آدرس : {{site_setting.address}}</p>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+ <!----------------------------------> 
+ <div class="copy-right">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-12 text-center">
+             &copy;&nbsp;&nbsp;طراحی و کدنویسی سئو 90&nbsp;&nbsp;&nbsp;&nbsp;
+             <span>info@seo90.ir</span>
+          </div>
+       </div>
+    </div>
+ </div>
