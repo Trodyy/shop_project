@@ -1,0 +1,378 @@
+{% extends "shared/_layout.html" %}
+{% load humanize %}
+{% load poll_extras %}
+
+{% block title %}
+صفحه اصلی
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="slider-box">
+                  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                     <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                     </ol>
+                     <div class="carousel-inner">
+                        {% for slider in sliders %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                           <div class="col-md-6" style="padding-top: 20px;">
+                              <h4>Canon 638044</h4>
+                              <span>{{slider.title}}</span>
+                              <p>{{slider.text}}</p>
+                           </div>
+                           <div class="col-md-6">
+                              <img src="{{slider.image.url}}" alt="">
+                           </div>
+                           <a href="{{slider.url}}" style="background-color: white;"><h4>بزن بریم</h4></a>
+                        </div>
+                        {% endfor %}
+                     </div>
+                  </div>
+               </div>
+               <!--slider-box-->
+            </div>
+         </div>
+      </div>
+      <!----------------------------------> 
+      <a href="{% url 'product_detail' slug=super_discount.slug  %}">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-3">
+                  <div class="coopen">
+                     <img src="/static/img/coopen.png" class="w-100" />
+                  </div>
+               </div>
+               <div class="col-md-9">
+                  <div class="vizheh">
+                     <div class="col-md-6">
+                        <div class="vizheh-img">
+                           <img src="{{super_discount.image.url}}" class="w-100" />
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="vizheh-content">
+                           <div><del>{{super_discount.price}} تومان</del></div>
+                           <h4>{% super_discount super_discount.price 20 %}  تومان</h4>
+                           <h3>Huawei Tab Y300G2</h3>
+                           <ul>
+                              <li>حافظه داخلی 32 گیگابایت</li>
+                              <li>دوربین 13 مگاپیکسل</li>
+                           </ul>
+                           <hr>
+                           <span>زمان باقیمانده تا پایان سفارش</span> 
+                           <div class="counter" data-minutes-left="1000"></div>
+                        </div>
+                     </div>
+                     <div class="vizheh-tag">
+                        <span>فرصت ویژه</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </a>
+      <!---------------------------------->   
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="one-slider">
+                  <h4>جدید ترین محصولات</h4>
+                  <div class="owl-carousel owl-theme ov1">
+                     {% for latest_product in latest_products %}
+                     <div class="item">
+                        <figure>
+                           <a href=""><img src="{{latest_product.image.url}}" class="w-100" /></a>
+                        </figure>
+                        <h5>{{latest_product.title}}</h5>
+                        <span>{{latest_product.price | intcomma}} تومان</span>
+                        <br>
+                        <a href="{% url 'product_detail' slug=latest_product.slug %}" style="color: red;">مشاهده جزئیات</a>
+                     </div>
+                     {% endfor %}
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!----------------------------------> 
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="bodybulding-baner">
+                  <a href="#"><img src="/static/img/bodybulding-baner.jpg" class="w-100" /></a>
+                  <h4>مکمل های ورزشی</h4>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!---------------------------------->  
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="three-slider">
+                  <h4>محصولات پر بازدید</h4>
+                  <div class="owl-carousel owl-theme ov3">
+                     {% for product in most_visited %}
+                     <div class="item">
+                        <figure>
+                           <a href=""><img src="{{product.image.url}}" class="w-100" /></a>
+                        </figure>
+                        <h5>{{product.title}}</h5>
+                        <span>{{product.price | intcomma}} تومان</span>
+                        <br>
+                        <a href="{% url 'product_detail' slug=product.slug %}">مشاهده جزئیات</a>
+                     </div>
+                     {% endfor %}
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!----------------------------------> 
+      <!-- <div class="container">
+         <div class="row">
+            <div class="col-md-4">
+               <div class="blog-content">
+                  <figure>
+                     <img src="/static/img/off/watch/1.jpg" class="w-100">
+                  </figure>
+                  <h5><i class="fa fa-title"></i>گوشی هوشمند جیبی</h5>
+                  <p>گوشی هوشمند جیبی تکنولوژی جدید کمپانی اپل،با خاصیت ضد آب بودن و حمل بسیار مخفی،باقابلیت حمل داخل گوش...</p>
+                  <ul>
+                     <li><i class="fa fa-bars"></i>دسته بندی : تکنولوژی</li>
+                     <li><i class="fa fa-calendar-o"></i>نوشته شده در : 97/10/20</li>
+                     <li><i class="fa fa-user-o"></i>نویسنده : سئو 90</li>
+                  </ul>
+                  <a href="#" class="mybtn"><i class="fa fa-continuous"></i>ادامه مطلب&raquo;</a>	
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="blog-content">
+                  <figure>
+                     <img src="/static/img/off/watch/1.jpg" class="w-100">
+                  </figure>
+                  <h5><i class="fa fa-title"></i>گوشی هوشمند جیبی</h5>
+                  <p>گوشی هوشمند جیبی تکنولوژی جدید کمپانی اپل،با خاصیت ضد آب بودن و حمل بسیار مخفی،باقابلیت حمل داخل گوش...</p>
+                  <ul>
+                     <li><i class="fa fa-bars"></i>دسته بندی : تکنولوژی</li>
+                     <li><i class="fa fa-calendar-o"></i>نوشته شده در : 97/10/20</li>
+                     <li><i class="fa fa-user-o"></i>نویسنده : سئو 90</li>
+                  </ul>
+                  <a href="#" class="mybtn"><i class="fa fa-continuous"></i>ادامه مطلب&raquo;</a>	
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="blog-content">
+                  <figure>
+                     <img src="/static/img/off/watch/1.jpg" class="w-100">
+                  </figure>
+                  <h5><i class="fa fa-title"></i>گوشی هوشمند جیبی</h5>
+                  <p>گوشی هوشمند جیبی تکنولوژی جدید کمپانی اپل،با خاصیت ضد آب بودن و حمل بسیار مخفی،باقابلیت حمل داخل گوش...</p>
+                  <ul>
+                     <li><i class="fa fa-bars"></i>دسته بندی : تکنولوژی</li>
+                     <li><i class="fa fa-calendar-o"></i>نوشته شده در : 97/10/20</li>
+                     <li><i class="fa fa-user-o"></i>نویسنده : سئو 90</li>
+                  </ul>
+                  <a href="#" class="mybtn"><i class="fa fa-continuous"></i>ادامه مطلب&raquo;</a>	
+               </div>
+            </div>
+         </div>
+      </div>
+      --------------------------------> 
+      <!-- <div class="tab-box">
+         <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#watch"><i class="fa fa-gift"></i>ساعت مچی</a></li>
+            <li><a data-toggle="tab" href="#badaligat"><i class="fa fa-gift"></i>بدلیجات</a></li>
+            <li><a data-toggle="tab" href="#behdashti"><i class="fa fa-gift"></i>آرایشی و بهداشتی</a></li>
+            <li><a data-toggle="tab" href="#bazi"><i class="fa fa-gift"></i>اسباب بازی</a></li>
+            <li><a data-toggle="tab" href="#varzesh"><i class="fa fa-gift"></i>تجهیزات ورزشی</a></li>
+            <li><a data-toggle="tab" href="#lebas"><i class="fa fa-gift"></i>لباس فصل</a></li>
+         </ul> -->
+         <!-- <div class="container">
+            <div class="row">
+               <div class="tab-content">
+                  <div id="watch" class="tab-pane fade">
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/watch/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/watch/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/watch/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/watch/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/watch/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/watch/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/watch/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/watch/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/watch/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/watch/1.jpg" class="w-100" /></a>
+                     </div>
+                  </div>
+                  <div id="badaligat" class="tab-pane fade">
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/badal/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/badal/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/badal/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/badal/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/badal/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/badal/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/badal/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/badal/1.jpg" class="w-100" /></a>
+                     </div>
+                  </div>
+                  <div id="behdashti" class="tab-pane fade">
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/behdashti/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/behdashti/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/behdashti/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/behdashti/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/behdashti/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/behdashti/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/behdashti/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/behdashti/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/behdashti/1.jpg" class="w-100" /></a>
+                     </div>
+                  </div>
+                  <div id="bazi" class="tab-pane fade">
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/bazi/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/bazi/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/bazi/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/bazi/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/bazi/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/bazi/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/bazi/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/bazi/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/bazi/1.jpg" class="w-100" /></a>
+                     </div>
+                  </div>
+                  <div id="varzesh" class="tab-pane fade">
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/varzesh/8.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/varzesh/8.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/varzesh/8.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/varzesh/8.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/varzesh/8.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/varzesh/8.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/varzesh/8.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/varzesh/8.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/varzesh/8.jpg" class="w-100" /></a>
+                     </div>
+                  </div>
+                  <div id="lebas" class="tab-pane fade">
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/lebas/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/lebas/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/lebas/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/lebas/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/lebas/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/lebas/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/lebas/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/lebas/1.jpg" class="w-100" /></a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="#"><img src="/static/img/off/lebas/1.jpg" class="w-100" /></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      </div>
+      </div> -->
+{% endblock content %}

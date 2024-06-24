@@ -42,8 +42,10 @@ INSTALLED_APPS = [
     'product_module' ,
     'site_module' ,
     'home_module' ,
+    'polls' ,
     #inner_module
-    'django_render_partial'
+    'django_render_partial' ,
+    'django.contrib.humanize' ,
 ]
 
 MIDDLEWARE = [
@@ -138,7 +140,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_HOST_USER = 'mohamadiyasin499@gmail.com'
 # EMAIL_HOST_PASSWORD = 'bdiilwuwjpuaocha'
-EMAIL_HOST_USER = 'trodykb@gmail.com'
-EMAIL_HOST_PASSWORD = 'akfg abbe juvf dtyu'
+EMAIL_HOST_USER = 'trody482@gmail.com'
+EMAIL_HOST_PASSWORD = 'ciah wvxg reio plcn'
 EMAIL_PORT = 587
 #akfg abbe juvf dtyu
