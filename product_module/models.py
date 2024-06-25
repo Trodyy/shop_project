@@ -62,4 +62,14 @@ class ProductVisit(models.Model) :
     class Meta :
         verbose_name  ='بازدید محصول'
         verbose_name_plural = 'بازدید محصولات'
-    
+
+class ProductSpecifications(models.Model) :
+    product = models.ForeignKey('Product' , on_delete=models.CASCADE , verbose_name='محصول0')
+    Specification = models.CharField(max_length=70 , verbose_name='ویژگی')
+
+    class Meta :
+        verbose_name = 'ویژگی محصول'
+        verbose_name_plural = 'ویژگی های محصول'
+
+    def __str__(self) :
+        return f'{self.product.title} / {self.Specification}'

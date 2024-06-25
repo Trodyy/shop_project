@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView , DetailView
-from .models import Product , ProductVisit
+from .models import Product , ProductVisit , ProductSpecifications
 from django.db.models import Count
 from utils.client_ip import get_user_ip
 # Create your views here.
@@ -28,8 +28,11 @@ class ProductDetailView(DetailView) :
     
     def get_context_data(self,**kwargs) :
         context = super().get_context_data(**kwargs)
+        loaded_product = self.object
         new_visit = ProductVisit(product=self.object , ip=get_user_ip(self.request) , user=self.request.user)
         new_visit.save()
+        context['Specifications'] = ProductSpecifications.objects.filter(product_id = loaded_product.id)
+        context['revelants'] = Product.objects.filter(category__url_title__iexact = loaded_product.category.url_title).exclude(id = loaded_product.id)
         return context
         
         

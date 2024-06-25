@@ -23,13 +23,9 @@
                             <br>
                             <span>مشخصات مختصر محصول :</span><br>
                             <ul class="product-ul">
-                               <li></li>
-                               <li>اندازه نمایشگر 10 اینچ</li>
-                               <li>دارای شبکه 4G</li>
-                               <li>دارای دو سیم کارت</li>
-                               <li>حافظه داخلی 32G</li>
-                               <li>دارای بدنه فلزی در عین حال سبک</li>
-                               <li>درای تنوع رنگ</li>
+                               {% for specify in Specifications %}
+                               <li>{{specify.Specification}}</li>
+                               {% endfor %}
                             </ul>
                          </div>
                       </div>
@@ -97,76 +93,15 @@
        <div class="col-md-12">
           <div class="single-two-slider">
              <div class="owl-carousel owl-theme ov-single-two">
+                {% for revalant in revelants %}
                 <div class="item">
-                   <figure>
-                      <a href=""><img src="/static/img/Canon_EOS_400D.png" class="w-100" /></a>
-                   </figure>
-                   <h5>Samsung 500</h5>
-                   <span>1,200,000 تومان</span>
-                </div>
-                <div class="item">
-                   <figure>
-                      <a href=""><img src="/static/img/Canon_EOS_400D.png" class="w-100" /></a>
-                   </figure>
-                   <h5>Samsung 500</h5>
-                   <span>1,200,000 تومان</span>
-                </div>
-                <div class="item">
-                   <figure>
-                      <a href=""><img src="/static/img/Canon_EOS_400D.png" class="w-100" /></a>
-                   </figure>
-                   <h5>Samsung 500</h5>
-                   <span>1,200,000 تومان</span>
-                </div>
-                <div class="item">
-                   <figure>
-                      <a href=""><img src="/static/img/Canon_EOS_400D.png" class="w-100" /></a>
-                   </figure>
-                   <h5>Samsung 500</h5>
-                   <span>1,200,000 تومان</span>
-                </div>
-                <div class="item">
-                   <figure>
-                      <a href=""><img src="/static/img/Canon_EOS_400D.png" class="w-100" /></a>
-                   </figure>
-                   <h5>Samsung 500</h5>
-                   <span>1,200,000 تومان</span>
-                </div>
-                <div class="item">
-                   <figure>
-                      <a href=""><img src="/static/img/Canon_EOS_400D.png" class="w-100" /></a>
-                   </figure>
-                   <h5>Samsung 500</h5>
-                   <span>1,200,000 تومان</span>
-                </div>
-                <div class="item">
-                   <figure>
-                      <a href=""><img src="/static/img/Canon_EOS_400D.png" class="w-100" /></a>
-                   </figure>
-                   <h5>Samsung 500</h5>
-                   <span>1,200,000 تومان</span>
-                </div>
-                <div class="item">
-                   <figure>
-                      <a href=""><img src="/static/img/Canon_EOS_400D.png" class="w-100" /></a>
-                   </figure>
-                   <h5>Samsung 500</h5>
-                   <span>1,200,000 تومان</span>
-                </div>
-                <div class="item">
-                   <figure>
-                      <a href=""><img src="/static/img/Canon_EOS_400D.png" class="w-100" /></a>
-                   </figure>
-                   <h5>Samsung 500</h5>
-                   <span>1,200,000 تومان</span>
-                </div>
-                <div class="item">
-                   <figure>
-                      <a href=""><img src="/static/img/Canon_EOS_400D.png" class="w-100" /></a>
-                   </figure>
-                   <h5>Samsung 500</h5>
-                   <span>1,200,000 تومان</span>
-                </div>
+                  <figure>
+                     <a href=""><img src="{{revalant.image.url}}" class="w-100" /></a>
+                  </figure>
+                  <h5>{{revalant.title}}</h5>
+                  <span>{{revalant.price | intcomma}} تومان</span>
+               </div>
+                {% endfor %}
              </div>
           </div>
        </div>
