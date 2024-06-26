@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+
+<title>Blog Comments With Form - Bootdey.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/style/style3.css">
+</head>
+<body>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+<div class="be-comment-block">
+<h1 class="comments-title">نظرات ({{comment_count}})</h1>
+    {% for comment in comments %}
+    <div class="be-comment">
+        <div class="be-img-comment">
+        <a href="blog-detail-2.html">
+        {% if comment.avatar %}
+        <img src="{{comment.user.avatar.url}}" alt class="be-ava-comment">
+        {% endif %}
+        </a>
+        </div>
+        <div class="be-comment-content">
+        <span class="be-comment-name">
+        <a href="blog-detail-2.html">{{comment.user.get_full_name}}</a>
+        </span>
+        <span class="be-comment-time">
+        <i class="fa fa-clock-o"></i>
+        {{comment.create_date}}
+        </span>
+        <p class="be-comment-text">
+            {{comment.text}}
+        </p>
+        </div>
+        </div>
+        {% endfor %}
+
+
+
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	
+</script>
+</body>
+</html>

@@ -73,3 +73,19 @@ class ProductSpecifications(models.Model) :
 
     def __str__(self) :
         return f'{self.product.title} / {self.Specification}'
+    
+class ProductComment(models.Model) :
+    parent = models.ForeignKey('ProductComment' , on_delete=models.CASCADE , verbose_name='والد' , null=True , blank=True)
+    product = models.ForeignKey('Product' , on_delete=models.CASCADE , verbose_name='محصول' , null=True)
+    user = models.ForeignKey(User , on_delete=models.CASCADE , verbose_name='کاربر' , editable=False)
+    text = models.TextField(verbose_name='متن')
+    create_date = models.DateTimeField(auto_now_add=True , verbose_name='تاریخ نوشتن نظر')
+    is_active = models.BooleanField(verbose_name='فعال / غیر فعال')
+
+    class Meta :
+        verbose_name = 'کامنت محصول'
+        verbose_name_plural = 'کامنت های محصول'
+
+    def __str__(self) :
+        return self.text
+    

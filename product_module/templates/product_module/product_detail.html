@@ -1,5 +1,6 @@
 {% extends 'shared/_layout.html' %}
 {% load humanize %}
+{% load render_partial %}
 {% block title %}
 جزئیات محصول {{product.title}}
 {% endblock %}
@@ -131,7 +132,18 @@
                    <p class="bg-light"><span>گارد:</span>ندارد</p>
                 </div>
                 <div id="two" class="tab-pane fade">
-                   نظری وجود ندارد...
+                   <!-- نظری وجود ندارد... -->
+                    {% render_partial 'product_module.views.product_comment' product=product %}
+                    <form class="form-block" style="margin-top: 4rem;">
+                     <div class="row">
+                     <div class="col-xs-12">
+                     <div class="form-group">
+                     <textarea class="form-input" required placeholder="Your text"></textarea>
+                     </div>
+                     </div>
+                     <a class="btn btn-primary pull-right">submit</a>
+                     </div>
+                     </form>
                 </div>
              </div>
           </div>
