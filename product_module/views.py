@@ -37,7 +37,7 @@ class ProductDetailView(DetailView) :
         return context
         
 def product_comment(request : HttpRequest , product) :
-    comments = ProductComment.objects.filter(product_id = product.id , is_active = True , parent_id = None)
+    comments = ProductComment.objects.filter(product_id = product.id , is_active = True , parent_id = None).prefetch_related('productcomment_set')
     context = {
         'comments' : comments ,
         'comment_count' : comments.count()

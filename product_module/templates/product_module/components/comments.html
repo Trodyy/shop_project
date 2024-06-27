@@ -1,3 +1,4 @@
+{% load poll_extras %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,11 +26,11 @@
         </div>
         <div class="be-comment-content">
         <span class="be-comment-name">
-        <a href="blog-detail-2.html">{{comment.user.get_full_name}}</a>
+        <a href="blog-detail-2.html">{{comment.user.email}}</a>
         </span>
         <span class="be-comment-time">
         <i class="fa fa-clock-o"></i>
-        {{comment.create_date}}
+        {{comment.create_date | jalalidate}}
         </span>
         <p class="be-comment-text">
             {{comment.text}}

@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     #inner_module
     'django_render_partial' ,
     'django.contrib.humanize' ,
+    'jalali_date',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
