@@ -132,16 +132,15 @@
                    <p class="bg-light"><span>گارد:</span>ندارد</p>
                 </div>
                 <div id="two" class="tab-pane fade">
-                   <!-- نظری وجود ندارد... -->
                     {% render_partial 'product_module.views.product_comment' product=product %}
                     <form class="form-block" style="margin-top: 4rem;">
                      <div class="row">
                      <div class="col-xs-12">
                      <div class="form-group">
-                     <textarea class="form-input" required placeholder="Your text"></textarea>
+                     <textarea class="form-input" required placeholder="Your text" id="product-comment"></textarea>
                      </div>
                      </div>
-                     <a class="btn btn-primary pull-right">submit</a>
+                     <a class="btn btn-primary pull-right" onclick="sendProductComment({{product.id}})">ارسال نظر</a>
                      </div>
                      </form>
                 </div>

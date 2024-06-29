@@ -3,7 +3,7 @@ from django.views.generic import ListView , DetailView
 from .models import Product , ProductVisit , ProductSpecifications , ProductComment
 from django.db.models import Count
 from utils.client_ip import get_user_ip
-from django.http import HttpRequest
+from django.http import HttpRequest , HttpResponse
 # Create your views here.
 class ProductListView(ListView) :
     template_name = 'product_module/product_list.html'
@@ -43,3 +43,11 @@ def product_comment(request : HttpRequest , product) :
         'comment_count' : comments.count()
     }
     return render(request , 'product_module/components/comments.html' , context)
+
+def add_product_comment(request : HttpRequest) :
+    comment_text = request.GET['comment']
+    product_id = request.GET['product_id']
+    new_comment = ProductComment(parent = None , product_id = product_id , user_id = request.user.id , text = comment_text , is_active = True)
+    new_comment.save()
+    return HttpResponse('امیدورام موفق شده باشم')
+    
