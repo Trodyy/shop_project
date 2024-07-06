@@ -1,7 +1,7 @@
 function sendProductComment(productId) {
     let productComment = $('#product-comment').val()
 
-    $.get('/products/add-product-comment' , 
+    $.get('/products/product-comment' , 
         {
         comment : productComment ,
         product_id : productId
@@ -9,4 +9,8 @@ function sendProductComment(productId) {
     ).then(res =>
        window.location.reload()
     )
+}
+
+function fullParentProduct (commentId) {
+    
 }
