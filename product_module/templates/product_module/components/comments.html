@@ -12,14 +12,14 @@
 </head>
 <body>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container">
+<div class="container" id="comment_area">
 <div class="be-comment-block">
 <h1 class="comments-title">نظرات ({{comment_count}})</h1>
     {% for comment in comments %}
-    <div class="be-comment">
+    <div class="be-comment" id="single_comment_{{comment.id}}">
         <div class="be-img-comment">
         <a href="blog-detail-2.html">
-        {% if comment.avatar %}
+        {% if comment.user.avatar %}
         <img src="{{comment.user.avatar.url}}" alt class="be-ava-comment">
         {% endif %}
         </a>
@@ -35,9 +35,32 @@
         <p class="be-comment-text">
             {{comment.text}}
         </p>
-        <a href="#" style="display: flex; flex-direction: row-reverse;" onclick="fullParentProduct({{comment.id}})">پاسخ</a>
+        <a style="display: flex; flex-direction: row-reverse;" onclick="fullParentProduct({{comment.id}})">پاسخ</a>
         </div>
         </div>
+        {% for subcomment in comment.productcomment_set.all %}
+        <div class="be-comment" style="margin-right: 4rem;">
+            <div class="be-img-comment">
+            <a href="blog-detail-2.html">
+            {% if subcomment.user.avatar %}
+            <img src="{{subcomment.user.avatar.url}}" alt class="be-ava-comment">
+            {% endif %}
+            </a>
+            </div>
+            <div class="be-comment-content">
+            <span class="be-comment-name">
+            <a href="blog-detail-2.html">{{subcomment.user.email}}</a>
+            </span>
+            <span class="be-comment-time">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            {{subcomment.create_date | jalalidate}}
+            </span>
+            <p class="be-comment-text">
+                {{subcomment.text}}
+            </p>
+            </div>
+            </div>
+        {% endfor %}
         {% endfor %}
 
 

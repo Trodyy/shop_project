@@ -37,17 +37,25 @@ class ProductDetailView(DetailView) :
         return context
         
 def product_comment(request : HttpRequest , product) :
-    comments = ProductComment.objects.filter(product_id = product.id , is_active = True , parent_id = None).prefetch_related('productcomment_set')
+    comments = ProductComment.objects.filter(product_id = product.id , is_active = True , parent_id = None).prefetch_related('productcomment_set').order_by('-id')
     context = {
         'comments' : comments ,
-        'comment_count' : comments.count()
+        'comment_count' : ProductComment.objects.filter(is_active = True , product_id = product.id).count()
     }
     return render(request , 'product_module/components/comments.html' , context)
 
 def add_product_comment(request : HttpRequest) :
-    comment_text = request.GET['comment']
-    product_id = request.GET['product_id']
-    new_comment = ProductComment(parent = None , product_id = product_id , user_id = request.user.id , text = comment_text , is_active = True)
-    new_comment.save()
-    return HttpResponse('امیدورام موفق شده باشم')
+    if request.user.is_authenticated :
+        comment_text = request.GET.get('comment')
+        product_id = request.GET.get('product_id')
+        parent_id = request.GET.get('parent_id')
+        new_comment = ProductComment(parent_id = parent_id if parent_id is not '' else None , product_id = product_id , user_id = request.user.id , text = comment_text , is_active = True)
+        new_comment.save()
+        comments = ProductComment.objects.filter(product_id = product_id , is_active = True , parent_id = None).prefetch_related('productcomment_set').order_by('-id')
+        context = {
+        'comments' : comments ,
+        'comment_count' : ProductComment.objects.filter(is_active = True , product_id = product_id).count()
+    }
+        return render(request , 'product_module/components/comments.html' , context)
+    return HttpResponse('i hpe that i will be successfull')
     

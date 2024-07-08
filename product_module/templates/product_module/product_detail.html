@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
+    <div class="row" id="333">
        <div class="col-md-12">
           <div class="single-box">
              <div class="row">
@@ -133,11 +133,13 @@
                 </div>
                 <div id="two" class="tab-pane fade">
                     {% render_partial 'product_module.views.product_comment' product=product %}
-                    <form class="form-block" style="margin-top: 4rem;">
+                    <form class="form-block" style="margin-top: 4rem;" method="get" action="{% url 'add_product_comment' %}">
+                     {% csrf_token %}
                      <div class="row">
                      <div class="col-xs-12">
                      <div class="form-group">
-                     <textarea class="form-input" required placeholder="Your text" id="product-comment"></textarea>
+                     <input type="hidden" value="" id="parent_id">
+                     <textarea class="form-input" required placeholder="لطفا نظر خود را بنویسید" id="product-comment"></textarea>
                      </div>
                      </div>
                      <a class="btn btn-primary pull-right" onclick="sendProductComment({{product.id}})">ارسال نظر</a>
